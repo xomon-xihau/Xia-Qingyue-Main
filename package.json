@@ -1,0 +1,14 @@
+{
+  "name": "xia-qingyue",
+  "version": "1.0.0",
+  "description": "A discord bot for ACG server",
+  "main": "xq.js",
+  "repository": "https://www.github.com/xomon-xihau/Xia-Qingyue-main",
+  "author": "Xomon Xihau",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "discord-akairo": "discord-akairo/discord-akairo",
+    "discord.js": "discordjs/discord.js",
+    "dotenv": "^8.2.0"
+  }
+}
