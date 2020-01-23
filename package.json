@@ -7,6 +7,7 @@
   "author": "Xomon Xihau",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "discord-akairo": "discord-akairo/discord-akairo",
     "discord.js": "discordjs/discord.js",
     "dotenv": "^8.2.0"
