@@ -41,6 +41,7 @@ class WikiaCommand extends Command {
       ],
       channel: 'guild',
       ratelimit: 2,
+      typing: true,
     });
   }
   exec(message, args) {

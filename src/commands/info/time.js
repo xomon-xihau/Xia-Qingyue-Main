@@ -18,19 +18,28 @@
  */
 
 const { Command } = require('discord-akairo');
+const { MessageEmbed } = require('discord.js');
 
-class PingCommand extends Command {
+const colors = require('../../utils/colors');
+
+class TimeCommand extends Command {
   constructor() {
-    super('ping', {
-      aliases: ['ping', 'hi'],
+    super('time', {
+      aliases: ['time', 'mtime'],
+      clientPermissions: ['EMBED_LINKS'],
+      channel: 'guild',
+      ratelimit: 2,
       typing: true,
-      cooldown: 30000,
-      ratelimit: 2
     });
   }
-  exec(msg) {
-    return msg.reply('Pong!');
+  exec(message) {
+    const date = new Date();
+    const time = date.toLocaleTimeString('en-US', { timeZone: 'Asia/Shanghai' });
+    const embed = new MessageEmbed()
+      .setColor(colors.darkviolet)
+      .setDescription(`**Shanghai Time:** ${time}`);
+    return message.util.send(embed);
   }
 }
 
-module.exports = PingCommand;
+module.exports = TimeCommand;

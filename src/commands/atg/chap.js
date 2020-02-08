@@ -31,6 +31,7 @@ class ChapCommand extends Command {
       clientPermissions: ['EMBED_LINKS'],
       channel: 'guild',
       ratelimit: 2,
+      typing: true,
     });
   }
   exec(message) {

@@ -71,13 +71,13 @@ class XiaQingyue extends AkairoClient {
               .setDescription('Cancelled.');
             return embed;
           },
-          retries: 2,
-        },
-        modifyOtherwise: (message, text) => {
+          modifyOtherwise: (message, text) => {
             embed.setColor(colors.forestgreen)
               .setDescription(text);
             return embed;
           },
+          retries: 2,
+        },
       },
       commandUtil: true,
       commandUtilLifetime: 300000,
