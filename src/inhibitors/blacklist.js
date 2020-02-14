@@ -22,12 +22,12 @@ const { Inhibitor } = require('discord-akairo');
 class BlacklistInhibitor extends Inhibitor {
   constructor() {
     super('blacklist', {
-      reason: 'blacklist',
+      reason: 'commands are disabled in this channel',
     });
   }
   exec(msg) {
-    const blacklist = [];
-    return blacklist.includes(msg.author.id);
+    const blacklist = ['667680020805713921', '442546874793328642'];
+    return blacklist.includes(msg.channel.id);
   }
 }
 

@@ -18,6 +18,9 @@
  */
 
 const { Listener } = require('discord-akairo');
+const { MessageEmbed } = require('discord.js');
+const colors = require('../utils/colors');
+const embed = new MessageEmbed();
 
 class CommandBlockedListener extends Listener {
   constructor() {
@@ -27,8 +30,11 @@ class CommandBlockedListener extends Listener {
     });
   }
 
-  exec(msg, command, reason) {
-    return msg.channel.send(`${msg.author.username} was blocked from using ${command.id} because of ${reason}!`);
+  exec(message, command, reason) {
+    embed.setColor(colors.mediumvioletred)
+      .setDescription(`${message.author.username} was blocked from using \`${command.id}\` command because ${reason}!`);
+    return message.util.send(embed)
+      .then(msg => msg.delete({ timeout: 15000, reason: 'It had to be done.' }));
   }
 }
 
