@@ -60,18 +60,13 @@ class HelpCommand extends Command {
       if (command.description.examples && command.description.examples.length) {
         embed.addField('❯ Examples', `${prefix[0]}${command.aliases[0]} ${command.description.examples.join(`\n${command.aliases[0]}`)}`);
       }
-            if (command.description.availArgs && command.description.availArgs.length) {
+      if (command.description.availArgs && command.description.availArgs.length) {
         embed.addField('❯ Available Arguments', command.description.availArgs.join('・'));
       }
     } else {
       embed
         .setTitle('Help Menu')
-        .setDescription(`This is a list of available commands.
-          Type \`${prefix[0]}help <command>\` for more.
-          Available prefix are ${prefix.join(', ')}.
-          <> mean required, [] mean optional.
-          Numbers represent total command in a category.`,
-        )
+        .setDescription(`This is a list of available commands.\nType \`${prefix[0]}help <command>\` for more.\nAvailable prefix are ${prefix.join(', ')}.\n<> mean required, [] mean optional.\nNumbers represent total command in a category.`)
         .setFooter(`${this.handler.modules.size} commands found.`);
 
       for (const category of this.handler.categories.values()) {
