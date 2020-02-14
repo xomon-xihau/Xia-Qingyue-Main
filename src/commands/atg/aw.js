@@ -28,8 +28,7 @@ const colors = require('../../utils/colors');
 class WikiaCommand extends Command {
   constructor() {
     super('wikia', {
-      aliases: ['wiki', 'aw'],
-      clientPermissions: ['EMBED_LINKS'],
+      aliases: ['wikia', 'wiki', 'aw'],
       args: [
         {
           id: 'search',
@@ -39,7 +38,14 @@ class WikiaCommand extends Command {
           },
         },
       ],
+      category: 'atg',
       channel: 'guild',
+      clientPermissions: ['EMBED_LINKS'],
+      description: {
+        content: 'Show the top search result on wikia.',
+        usage: '<x>',
+        examples: ['Xia Qingyue'],
+      },
       ratelimit: 2,
       typing: true,
     });

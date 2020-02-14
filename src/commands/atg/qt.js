@@ -41,8 +41,14 @@ class QuoteCommand extends Command {
           },
         },
       ],
-      clientPermissions: ['EMBED_LINKS'],
+      category: 'atg',
       channel: 'guild',
+      clientPermissions: ['EMBED_LINKS'],
+      description: {
+        content: 'Show the character quotes from ATG wikia (Randomly).',
+        usage: '<x>',
+        examples: ['XQ'],
+      },
       ratelimit: 2,
       typing: true,
     });

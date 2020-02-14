@@ -26,8 +26,11 @@ class TimeCommand extends Command {
   constructor() {
     super('time', {
       aliases: ['time', 'mtime'],
-      clientPermissions: ['EMBED_LINKS'],
       channel: 'guild',
+      clientPermissions: ['EMBED_LINKS'],
+      description: {
+        content: 'Show the Shanghai time.',
+      },
       ratelimit: 2,
       typing: true,
     });

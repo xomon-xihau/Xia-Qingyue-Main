@@ -23,27 +23,37 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const colors = require('../../utils/colors');
+const embed = new MessageEmbed();
 
 class ChapCommand extends Command {
   constructor() {
     super('chap', {
       aliases: ['chap'],
-      clientPermissions: ['EMBED_LINKS'],
+      category: 'atg',
       channel: 'guild',
+      clientPermissions: ['EMBED_LINKS'],
+      description: {
+        content: 'Show the latest chapter.',
+      },
       ratelimit: 2,
       typing: true,
     });
   }
   exec(message) {
+    if (message.guild.id === '442546874793328640' && message.channel.id !== '566710843232878610') {
+      embed.setColor(colors.mediumvioletred)
+        .setDescription('This command can only be used in <#566710843232878610>.');
+      return message.util.send(embed)
+        .then(msg => msg.delete({ timeout: 15000, reason: 'It had to be done.' }));
+    }
     const url = 'http://book.zongheng.com/book/408586.html';
-    fetch(url)
+    return fetch(url)
       .then(res => {
         if (res.status !== 200) throw new Error(res.status);
         return res;
       })
       .then(res => res.text())
       .then(html => {
-        const embed = new MessageEmbed();
         const $ = cheerio.load(html);
         const title = $('.tit').find('a').text();
         const num = title.match(/(\d+)/)[0];

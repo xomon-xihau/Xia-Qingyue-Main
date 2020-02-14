@@ -27,8 +27,7 @@ const colors = require('../../utils/colors');
 class AbbreviationCommand extends Command {
   constructor() {
     super('abbreviation', {
-      aliases: ['ab', 'abbreviation'],
-      clientPermissions: ['EMBED_LINKS'],
+      aliases: ['abbreviation', 'ab'],
       args: [
         {
           id: 'ab',
@@ -38,7 +37,14 @@ class AbbreviationCommand extends Command {
           },
         },
       ],
+      category: 'atg',
       channel: 'guild',
+      clientPermissions: ['EMBED_LINKS'],
+      description: {
+        content: 'Tells the full form of an abbreviation.',
+        usage: '<x>',
+        examples: ['XQ'],
+      },
       ratelimit: 2,
       typing: true,
     });
@@ -66,7 +72,7 @@ class AbbreviationCommand extends Command {
 
         if (val) {
           embed.setColor(colors.darkviolet)
-            .setDescription(`${args.ab}: ${val}.`);
+            .setDescription(`**${args.ab}:** ${val}.`);
           return message.util.send(embed);
         }
         embed.setColor(colors.mediumvioletred)
