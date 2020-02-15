@@ -25,8 +25,6 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const colors = require('../../utils/colors');
 
-const embed = new MessageEmbed();
-
 class QuoteCommand extends Command {
   constructor() {
     super('quote', {
@@ -85,16 +83,17 @@ class QuoteCommand extends Command {
       .then(res => res.json())
       .then(json => {
         const { items } = json;
-        if (items.length === 0) throw new Error('NF');
+        if (items.length === 0) throw new Error();
         return `${items[0].url}/Quotes`;
       })
       .then(url => fetch(url))
       .then(res => {
-        if (res.status !== 200) throw new Error(res.status);
+        if (res.status !== 200) throw new Error();
         return res;
       })
       .then(res => res.text())
       .then(html => {
+        const embed = new MessageEmbed();
         const $ = cheerio.load(html);
         const quotes = [];
         $('table').has('i').each((_, elem) => {
@@ -116,12 +115,11 @@ class QuoteCommand extends Command {
         return message.util.send(embed);
       })
       .catch(e => {
-        if (e.message === 'NF') {
-          embed.setColor(colors.mediumvioletred)
-            .setDescription('Not Found!');
-          return message.util.send(embed)
-            .then(msg => msg.delete({ timeout: 15000, reason: 'It had to be done.' }));
-        }
+        const embed = new MessageEmbed();
+        embed.setColor(colors.mediumvioletred)
+          .setDescription('Not Found!');
+        message.util.send(embed)
+          .then(msg => msg.delete({ timeout: 15000, reason: 'It had to be done.' }));
         return console.error(e);
       });
   }
