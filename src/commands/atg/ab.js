@@ -62,7 +62,7 @@ class AbbreviationCommand extends Command {
         const $ = cheerio.load(html);
         let val = false;
         $('td').each((_, elem) => {
-          if ($(elem).text().match(args.ab)) {
+          if ($(elem).text().trim() === args.ab) {
             val = $(elem).next('td').text()
               .trim();
             return false;
