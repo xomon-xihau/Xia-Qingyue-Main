@@ -52,6 +52,13 @@ class YesOrNoCommand extends Command {
     });
   }
   exec(message, args) {
+    if (message.guild.id === '442546874793328640' && message.channel.id !== '566710843232878610') {
+      const embed = new MessageEmbed()
+        .setColor(colors.mediumvioletred)
+        .setDescription('This command can only be used in <#566710843232878610>.');
+      return message.util.send(embed)
+        .then(msg => msg.delete({ timeout: 15000, reason: 'It had to be done.' }));
+    }
     let qs = args.yn;
     if (qs.match(/^[a-z]/)) qs = capitalize(qs);
     if (qs.slice(-1) !== '?') qs = `${qs}?`;
